@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import JoinRoomInputs from './JoinRoomInputs';
 import { connect } from "react-redux";
+import OnlyWithAudioCheckbox from './OnlyWithAudioCheckbox';
 
 
 
@@ -29,6 +30,7 @@ const JoinRoomContent = (props) => {
 
 
             />
+            <OnlyWithAudioCheckbox/>
         </>
     );
 
