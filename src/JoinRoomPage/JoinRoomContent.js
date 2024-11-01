@@ -3,6 +3,7 @@ import JoinRoomInputs from './JoinRoomInputs';
 import { connect } from "react-redux";
 import OnlyWithAudioCheckbox from './OnlyWithAudioCheckbox';
 import { setConnectOnlyWithAudio } from '../store/actions';
+import ErrorMessage from './ErrorMessage';
 
 
 
@@ -18,6 +19,7 @@ const JoinRoomContent = (props) => {
   // State Hooks to manage input values
   const [roomIdValue, setRoomIdValue] = useState(''); // State to manage the room ID
   const [nameValue, setNameValue] = useState('');     // State to manage the user's name
+  const [errorMessage, setErrorMessage] = useState(null);  // State to manage the err msg
 
   
     return (
@@ -35,6 +37,7 @@ const JoinRoomContent = (props) => {
             setConnectOnlyWithAudio={setConnectOnlyWithAudio}
             connectOnlyWithAudio={connectOnlyWithAudio}
             />
+            <ErrorMessage errorMessage={errorMessage}/>
         </>
     );
 
