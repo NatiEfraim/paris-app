@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import OnlyWithAudioCheckbox from './OnlyWithAudioCheckbox';
 import { setConnectOnlyWithAudio } from '../store/actions';
 import ErrorMessage from './ErrorMessage';
+import JoinRoomButtons from './JoinRoomButtons';
 
 
 
@@ -21,6 +22,11 @@ const JoinRoomContent = (props) => {
   const [nameValue, setNameValue] = useState('');     // State to manage the user's name
   const [errorMessage, setErrorMessage] = useState(null);  // State to manage the err msg
 
+
+  const handleJoinRoom =()=>{
+    //joining the room
+console.log("goinnig");
+  }
   
     return (
         <>
@@ -38,6 +44,10 @@ const JoinRoomContent = (props) => {
             connectOnlyWithAudio={connectOnlyWithAudio}
             />
             <ErrorMessage errorMessage={errorMessage}/>
+            <JoinRoomButtons
+            handleJoinRoom={handleJoinRoom}
+            isRoomHost={isRoomHost}
+            />
         </>
     );
 
