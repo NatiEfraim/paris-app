@@ -2,9 +2,12 @@ import React, { useEffect } from 'react';
 import { useLocation } from "react-router-dom";
 import { connect } from "react-redux";
 import { setIsRoomHost } from '../store/action';
+import JoinRoomTitle from './JoinRoomTitle';
+
+import "./JoinRoomPage.css";
 
 const JoinRoomPage = (props) => {
-    const {setIsRoomAction } = props;
+    const {setIsRoomAction,isRoomHost } = props;
       const location = useLocation();
 
       useEffect(()=>{
@@ -14,28 +17,31 @@ const JoinRoomPage = (props) => {
     
             if (isRoomHost) {
                 // Perform an action, like setting a state or triggering a function
-                setIsRoomAction(true);
+                setIsRoomAction(true);// Update Redux state
             console.log("User is a room host");
             // Example: setIsRoomHostAction(true);
     }
-      });
+      });// Dependency array to re-run when these change
 
     return (
-        <div>
-            Hello from JoinRoomPage!!
+        <div className="join_room_page_container">
+        <div className="join_room_page_panel">
+          <JoinRoomTitle isRoomHost={isRoomHost} />
+         
         </div>
+      </div>
     );
 };
 
 const mapStoreStateToProps =(state)=>{
 return {
-    ...state
+    ...state,// Map Redux state to props
 };
 };
 
 const mapActionsToProps=(dispatch)=>{
     return {
-        setIsRoomAction: (isRoomHost)=> {return  dispatch(setIsRoomHost(isRoomHost));} 
+        setIsRoomAction: (isRoomHost)=> {return  dispatch(setIsRoomHost(isRoomHost));}  // Map action to props
     };
 };
 

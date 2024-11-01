@@ -3,19 +3,20 @@ import Actions from "./action";
 
 
 const initState ={
-identity:'',
-isRoomHost:false
+  identity: '',      // Initial state property
+  isRoomHost: false, // Initial state property
 };
 
 const reducer =(state = initState,action) =>{
 switch (action.type) {
   case Actions.SET_IS_ROOM_HOST:
     return {
-      ...state,
-      isRoomHost:action.isRoomHost
+      ...state,                  // Spread operator to copy the current state
+      isRoomHost: action.isRoomHost, // Update the `isRoomHost` property
     };
   default:
-    return state;
+    return state; // Return the unchanged state if action type does not match
+
 }
 
 }

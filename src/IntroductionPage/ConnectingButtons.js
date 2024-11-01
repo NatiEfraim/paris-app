@@ -4,15 +4,15 @@ import { useNavigate } from "react-router-dom"; // Use `useNavigate` instead of 
 
 const ConnectingButtons = () => {
 
-  
-  const navigate = useNavigate(); // Initialize `useNavigate`
+
+  const navigate = useNavigate(); // Hook for navigation
 
   const pushToJoinRoomPage = () => {
-    navigate("/join-room"); // Use `navigate` instead of `history.push`
+    navigate("/join-room"); // Navigates to "/join-room"
   };
 
   const pushToJoinRoomPageAsHost = () => {
-    navigate("/join-room?host=true"); // Use `navigate` for navigation
+    navigate("/join-room?host=true");  // Navigates to "/join-room?host=true"
   };
 
   return (
