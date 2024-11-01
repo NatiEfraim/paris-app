@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import JoinRoomInputs from './JoinRoomInputs';
 import { connect } from "react-redux";
 import OnlyWithAudioCheckbox from './OnlyWithAudioCheckbox';
-import { setConnectOnlyWithAudio } from '../store/actions';
+import { setConnectOnlyWithAudio, setIdentity, setRoomId } from '../store/actions';
 import ErrorMessage from './ErrorMessage';
 import JoinRoomButtons from './JoinRoomButtons';
 import { getRoomExists } from '../utils/api';
@@ -15,7 +15,7 @@ import { useNavigate } from "react-router-dom"; // Use `useNavigate` instead of 
 
 const JoinRoomContent = (props) => {
       // Destructuring props to get the state values and update functions
-     const {isRoomHost,setConnectOnlyWithAudio,connectOnlyWithAudio} = props;
+     const {isRoomHost,setConnectOnlyWithAudio,connectOnlyWithAudio,setIdentityAction,setRoomIdAction} = props;
 
    // State Hooks to manage input values
     const [roomIdValue, setRoomIdValue] = useState(''); // State to manage the room ID
@@ -25,6 +25,8 @@ const JoinRoomContent = (props) => {
     const navigate = useNavigate(); // Hook for navigation
 
   const handleJoinRoom = async ()=>{
+    //save identity of user
+    setIdentityAction(nameValue);
 console.log("goinnig");
 if (isRoomHost) {
     //open a new meeting
@@ -47,6 +49,7 @@ if (isRoomHost) {
       } else {
         // join a room !
         //!Need to save in the redux store the meeting id and the provided by user that want to join
+        setRoomIdAction(roomIdValue);//gust has join the meeting
         navigate("/room"); // Navigates to "/room"
     }
     } else {
@@ -94,10 +97,15 @@ const mapStoreStateToProps = (state) => {
   };
 
   const mapActionsToProps = (dispatch) => {
+
+    //? usig set function of redux - store
+
+
     return {
       setConnectOnlyWithAudio: (onlyWithAudio) =>
         dispatch(setConnectOnlyWithAudio(onlyWithAudio)),
-
+      setIdentityAction: (identity) => dispatch(setIdentity(identity)),
+      setRoomIdAction: (roomId) => dispatch(setRoomId(roomId)),
     };
   };
 
