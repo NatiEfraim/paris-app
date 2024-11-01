@@ -5,6 +5,7 @@ import Actions from "./actions";
 const initState = {
   identity: '',      // Initial state property
   isRoomHost: false, // Initial state property
+  connectOnlyWithAudio: false, // Initial state property
 };
 
 const reducer = (state = initState, action) => {
@@ -14,6 +15,13 @@ const reducer = (state = initState, action) => {
         ...state,                  // Spread operator to copy the current state
         isRoomHost: action.isRoomHost, // Update the `isRoomHost` property
       };
+      case Actions.SET_CONNECT_ONLY_WITH_AUDIO:
+        return {
+          ...state,
+          connectOnlyWithAudio: action.onlyWithAudio,
+        };
+
+
     default:
       return state; // Return the unchanged state if action type does not match
 
